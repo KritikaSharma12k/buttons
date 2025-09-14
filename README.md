@@ -1,2 +1,41 @@
-# buttons
-This project is a simple button group built with plain HTML, CSS, and JavaScript. It lets you generate a set of buttons and highlight the one that’s selected. Only one button can be active at a time, similar to a radio group. The design is clean, lightweight, and easy to customize for any UI.
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .opt-btn {
+      padding: 11px 20px;
+      margin: 4px;
+      border: none;
+      background: #34495e;
+      color: #ecf0f1;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    .opt-btn.active {
+      background: #c0392b;
+    }
+  </style>
+</head>
+<body>
+  <div id="grp"></div>
+
+  <script>
+    const grp = document.getElementById("grp");
+    const list = ["Button 1", "Button 2", "Button 3", "Button 4", "Button 5"];
+
+    list.forEach(x => {
+      let bt = document.createElement("button");
+      bt.className = "opt-btn";
+      bt.textContent = x;
+      grp.appendChild(bt);
+    });
+
+    grp.addEventListener("click", e => {
+      if (e.target.classList.contains("opt-btn")) {
+        document.querySelectorAll(".opt-btn").forEach(b => b.classList.remove("active"));
+        e.target.classList.add("active");
+      }
+    });
+  </script>
+</body>
+</html>
